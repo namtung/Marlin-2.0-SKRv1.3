@@ -659,10 +659,10 @@
 #define Z_DRIVER_TYPE  TMC5160 
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
-//#define Z2_DRIVER_TYPE A4988
+#define Z2_DRIVER_TYPE TMC5160
 //#define Z3_DRIVER_TYPE A4988
-#define E0_DRIVER_TYPE TMC5160 
-//#define E1_DRIVER_TYPE A4988
+#define E0_DRIVER_TYPE A4988 
+// #define E1_DRIVER_TYPE TMC5160
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
@@ -718,7 +718,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4[, E5]]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 1000, 1000, 5, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -1003,7 +1003,7 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR true
-#define INVERT_Y_DIR true
+#define INVERT_Y_DIR false
 #define INVERT_Z_DIR true
 
 // @section extruder
@@ -1034,15 +1034,15 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 200
-#define Y_BED_SIZE 200
+#define X_BED_SIZE 220
+#define Y_BED_SIZE 190
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -30
+#define X_MIN_POS -20
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS Y_BED_SIZE
+#define X_MAX_POS 200
+#define Y_MAX_POS 190
 #define Z_MAX_POS 200
 
 /**
@@ -1154,7 +1154,7 @@
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-//#define RESTORE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.

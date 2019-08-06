@@ -438,7 +438,7 @@
   #endif
 #endif
 
-//#define Z_DUAL_STEPPER_DRIVERS
+#define Z_DUAL_STEPPER_DRIVERS
 #if ENABLED(Z_DUAL_STEPPER_DRIVERS)
   //#define Z_DUAL_ENDSTOPS
   #if ENABLED(Z_DUAL_ENDSTOPS)
@@ -514,8 +514,8 @@
 // @section homing
 
 // Homing hits each endstop, retracts by these distances, then does a slower bump.
-#define X_HOME_BUMP_MM 5
-#define Y_HOME_BUMP_MM 5
+#define X_HOME_BUMP_MM 25
+#define Y_HOME_BUMP_MM 0
 #define Z_HOME_BUMP_MM 2
 #define HOMING_BUMP_DIVISOR { 2, 2, 4 }  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 //#define QUICK_HOME                     // If homing includes X and Y, do a diagonal move initially
@@ -598,13 +598,13 @@
  * Z Steppers Auto-Alignment
  * Add the G34 command to align multiple Z steppers using a bed probe.
  */
-//#define Z_STEPPER_AUTO_ALIGN
+#define Z_STEPPER_AUTO_ALIGN
 #if ENABLED(Z_STEPPER_AUTO_ALIGN)
   // Define probe X and Y positions for Z1, Z2 [, Z3]
-  #define Z_STEPPER_ALIGN_X { 10, 150, 290 }
-  #define Z_STEPPER_ALIGN_Y { 290, 10, 290 }
+  #define Z_STEPPER_ALIGN_X { 30, 180 }
+  #define Z_STEPPER_ALIGN_Y { 100, 100 }
   // Set number of iterations to align
-  #define Z_STEPPER_ALIGN_ITERATIONS 3
+  #define Z_STEPPER_ALIGN_ITERATIONS 5
   // Enable to restore leveling setup after operation
   #define RESTORE_LEVELING_AFTER_G34
 
@@ -1163,7 +1163,7 @@
  *
  * Warning: Does not respect endstops!
  */
-//#define BABYSTEPPING
+#define BABYSTEPPING
 #if ENABLED(BABYSTEPPING)
   //#define BABYSTEP_WITHOUT_HOMING
   //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
@@ -1183,10 +1183,10 @@
 
   //#define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
 
-  //#define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
+  #define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
   #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
     //#define BABYSTEP_HOTEND_Z_OFFSET      // For multiple hotends, babystep relative Z offsets
-    //#define BABYSTEP_ZPROBE_GFX_OVERLAY   // Enable graphical overlay on Z-offset editor
+    // #define BABYSTEP_ZPROBE_GFX_OVERLAY   // Enable graphical overlay on Z-offset editor
   #endif
 #endif
 
@@ -1636,7 +1636,7 @@
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT     800  // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT     1000  // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_MICROSTEPS   16  // 0..256
     #define X_RSENSE     0.075
   #endif
@@ -1648,7 +1648,7 @@
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT     800
+    #define Y_CURRENT     1000
     #define Y_MICROSTEPS   16
     #define Y_RSENSE     0.075
   #endif
@@ -1666,9 +1666,9 @@
   #endif
 
   #if AXIS_IS_TMC(Z2)
-    #define Z2_CURRENT    800
+    #define Z2_CURRENT    1000
     #define Z2_MICROSTEPS  16
-    #define Z2_RSENSE    0.11
+    #define Z2_RSENSE    0.075
   #endif
 
   #if AXIS_IS_TMC(Z3)
@@ -1680,13 +1680,13 @@
   #if AXIS_IS_TMC(E0)
     #define E0_CURRENT    800
     #define E0_MICROSTEPS  16
-    #define E0_RSENSE    0.075
+    #define E0_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(E1)
     #define E1_CURRENT    800
     #define E1_MICROSTEPS  16
-    #define E1_RSENSE    0.11
+    #define E1_RSENSE    0.075
   #endif
 
   #if AXIS_IS_TMC(E2)
@@ -1865,7 +1865,7 @@
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
     #define X_STALL_SENSITIVITY  3
-    #define Y_STALL_SENSITIVITY  3
+    #define Y_STALL_SENSITIVITY  4
     //#define Z_STALL_SENSITIVITY  8
   #endif
 
